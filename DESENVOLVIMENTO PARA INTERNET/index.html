@@ -1,0 +1,1358 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livraria Aquarela</title>
+<script src="/_sdk/element_sdk.js"></script>
+<style>
+body {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, #ffcc99 0%, #ffb3d9 25%, #ffcccc 50%, #ffd699 75%, #ffb399 100%);
+min-height: 100%;
+overflow-x: hidden;
+}
+
+html {
+height: 100%;
+}
+
+.watercolor-bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0.2;
+z-index: -1;
+background:
+radial-gradient(circle at 20% 30%, rgba(255, 154, 86, 0.6) 0%, transparent 60%),
+radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.6) 0%, transparent 60%),
+radial-gradient(circle at 40% 80%, rgba(255, 138, 128, 0.6) 0%, transparent 60%),
+radial-gradient(circle at 90% 70%, rgba(255, 167, 38, 0.6) 0%, transparent 60%),
+radial-gradient(circle at 60% 50%, rgba(255, 112, 67, 0.5) 0%, transparent 50%);
+animation: watercolorMove 20s ease-in-out infinite;
+}
+
+@keyframes watercolorMove {
+0%, 100% { transform: scale(1) rotate(0deg); }
+33% { transform: scale(1.1) rotate(2deg); }
+66% { transform: scale(0.9) rotate(-1deg); }
+}
+
+header {
+background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(20px);
+padding: 1.5rem 2rem;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+position: sticky;
+top: 0;
+z-index: 100;
+border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+position: relative;
+}
+
+.nav-left {
+display: flex;
+align-items: center;
+gap: 1.5rem;
+}
+
+.team-button {
+background: linear-gradient(135deg, #ffb380, #ff8fb3);
+color: white;
+border: none;
+padding: 0.8rem 1.5rem;
+border-radius: 25px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px rgba(255, 143, 179, 0.2);
+font-size: 0.9rem;
+}
+
+.team-button:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 143, 179, 0.3);
+background: linear-gradient(135deg, #ff8fb3, #ffb380);
+}
+
+.logo {
+font-size: 2.2rem;
+font-weight: 800;
+color: #ffffff;
+text-decoration: none;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+letter-spacing: -0.5px;
+}
+
+.logo::after {
+content: '🎨✨';
+margin-left: 0.5rem;
+}
+
+.nav-links {
+display: flex;
+gap: 2rem;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.nav-links a {
+text-decoration: none;
+color: #ffffff;
+font-weight: 600;
+transition: all 0.3s ease;
+position: relative;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+padding: 0.5rem 1rem;
+border-radius: 25px;
+}
+
+.nav-links a:hover {
+color: #ffffff;
+transform: translateY(-3px);
+background: rgba(255, 107, 107, 0.3);
+backdrop-filter: blur(10px);
+}
+
+.nav-links a::after {
+content: '';
+position: absolute;
+bottom: -8px;
+left: 50%;
+transform: translateX(-50%);
+width: 0;
+height: 3px;
+background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #f9ca24);
+transition: width 0.3s ease;
+border-radius: 2px;
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+main {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+.hero {
+text-align: center;
+padding: 4rem 0;
+position: relative;
+}
+
+.hero h1 {
+font-size: 4rem;
+color: #ffffff;
+margin-bottom: 1.5rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+font-weight: 900;
+letter-spacing: -1px;
+line-height: 1.1;
+}
+
+.hero p {
+font-size: 1.4rem;
+color: #ffffff;
+margin-bottom: 2.5rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+font-weight: 400;
+line-height: 1.6;
+opacity: 0.95;
+}
+
+.cta-button {
+background: linear-gradient(135deg, #ff9a56, #ff6b9d, #ff8a80);
+background-size: 200% 200%;
+color: white;
+padding: 1.2rem 2.5rem;
+border: none;
+border-radius: 50px;
+font-size: 1.2rem;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.4s ease;
+box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+text-decoration: none;
+display: inline-block;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+animation: buttonGlow 3s ease-in-out infinite;
+position: relative;
+overflow: hidden;
+}
+
+.cta-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 15px 35px rgba(255, 107, 157, 0.6);
+background-position: 100% 100%;
+}
+
+.cta-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+left: 100%;
+}
+
+@keyframes buttonGlow {
+0%, 100% { box-shadow: 0 8px 25px rgba(255, 154, 86, 0.4); }
+50% { box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4); }
+}
+
+.features {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+margin: 4rem 0;
+}
+
+.feature-card {
+background: rgba(255, 255, 255, 0.25);
+backdrop-filter: blur(20px);
+padding: 2.5rem;
+border-radius: 25px;
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+transition: all 0.4s ease;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.feature-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+left: 100%;
+}
+
+.feature-card:hover {
+transform: translateY(-15px) scale(1.02);
+box-shadow: 0 25px 50px rgba(255, 107, 157, 0.3);
+background: rgba(255, 255, 255, 0.35);
+}
+
+.feature-icon {
+font-size: 3rem;
+margin-bottom: 1rem;
+display: block;
+animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+0%, 100% { transform: translateY(0px) rotate(0deg); }
+25% { transform: translateY(-8px) rotate(2deg); }
+50% { transform: translateY(-5px) rotate(0deg); }
+75% { transform: translateY(-10px) rotate(-2deg); }
+}
+
+.animated-emojis {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 1rem;
+font-size: 1.5rem;
+}
+
+.emoji {
+display: inline-block;
+animation: emojiDance 2s ease-in-out infinite;
+animation-delay: var(--delay);
+}
+
+@keyframes emojiDance {
+0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+25% { transform: translateY(-5px) scale(1.1) rotate(5deg); }
+50% { transform: translateY(-8px) scale(1.05) rotate(0deg); }
+75% { transform: translateY(-3px) scale(1.1) rotate(-5deg); }
+}
+
+.emoji:hover {
+animation: emojiSpin 0.5s ease-in-out;
+transform: scale(1.3);
+}
+
+@keyframes emojiSpin {
+0% { transform: rotate(0deg) scale(1); }
+50% { transform: rotate(180deg) scale(1.2); }
+100% { transform: rotate(360deg) scale(1.3); }
+}
+
+.feature-card h3 {
+color: #ffffff;
+margin-bottom: 1rem;
+font-size: 1.6rem;
+font-weight: 700;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card p {
+color: rgba(255, 255, 255, 0.9);
+line-height: 1.7;
+font-weight: 400;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.about-section {
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(25px);
+padding: 5rem 2rem;
+border-radius: 35px;
+margin: 5rem 0;
+text-align: center;
+position: relative;
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.about-section h2 {
+font-size: 3rem;
+color: #ffffff;
+margin-bottom: 2.5rem;
+font-weight: 800;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.about-section p {
+font-size: 1.3rem;
+color: rgba(255, 255, 255, 0.95);
+line-height: 1.8;
+max-width: 900px;
+margin: 0 auto 3rem;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+font-weight: 400;
+}
+
+.interactive-books {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin: 2rem 0;
+flex-wrap: wrap;
+}
+
+.book {
+width: 90px;
+height: 120px;
+background: linear-gradient(135deg, #ff9a56, #ff6b9d);
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.4s ease;
+position: relative;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.book:nth-child(2) { background: linear-gradient(135deg, #ff8a80, #ffa726); }
+.book:nth-child(3) { background: linear-gradient(135deg, #ff7043, #ff9a56); }
+.book:nth-child(4) { background: linear-gradient(135deg, #ff6b9d, #ff8a80); }
+.book:nth-child(5) { background: linear-gradient(135deg, #ffa726, #ff7043); }
+
+.book:hover {
+transform: translateY(-15px) rotateY(20deg) scale(1.1);
+box-shadow: 0 20px 40px rgba(255, 107, 157, 0.4);
+}
+
+.book::after {
+content: '📖';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 1.5rem;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.book:hover::after {
+opacity: 1;
+}
+
+footer {
+background: #2c3e50;
+color: white;
+text-align: center;
+padding: 2rem;
+margin-top: 4rem;
+}
+
+.color-palette {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin: 2rem 0;
+}
+
+.color-dot {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+cursor: pointer;
+transition: all 0.3s ease;
+border: 3px solid white;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.color-dot:hover {
+transform: scale(1.2);
+}
+
+.color-dot.red { background: linear-gradient(45deg, #ff9a56, #ff7043); }
+.color-dot.blue { background: linear-gradient(45deg, #ff6b9d, #ff8a80); }
+.color-dot.green { background: linear-gradient(45deg, #ffa726, #ff9a56); }
+.color-dot.yellow { background: linear-gradient(45deg, #ff8a80, #ff6b9d); }
+.color-dot.purple { background: linear-gradient(45deg, #ff7043, #ffa726); }
+
+@media (max-width: 768px) {
+.nav-links {
+display: none;
+}
+
+.hero h1 {
+font-size: 2.5rem;
+}
+
+.features {
+grid-template-columns: 1fr;
+}
+
+.interactive-books {
+gap: 0.5rem;
+}
+
+.book {
+width: 60px;
+height: 80px;
+}
+}
+
+.notification {
+position: fixed;
+top: 100px;
+right: 20px;
+background: linear-gradient(45deg, #2ecc71, #27ae60);
+color: white;
+padding: 1rem 1.5rem;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+transform: translateX(400px);
+transition: transform 0.3s ease;
+z-index: 1000;
+}
+
+.notification.show {
+transform: translateX(0);
+}
+
+.team-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+backdrop-filter: blur(10px);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 2000;
+}
+
+.team-modal.show {
+display: flex;
+}
+
+.team-modal-content {
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(20px);
+padding: 3rem;
+border-radius: 25px;
+max-width: 500px;
+width: 90%;
+text-align: center;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+border: 2px solid rgba(255, 107, 157, 0.3);
+}
+
+.team-modal h3 {
+color: #333;
+font-size: 2rem;
+margin-bottom: 2rem;
+background: linear-gradient(135deg, #ff9a56, #ff6b9d);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.team-member {
+background: linear-gradient(135deg, #ff9a56, #ff6b9d);
+color: white;
+padding: 1rem 1.5rem;
+margin: 0.5rem 0;
+border-radius: 15px;
+font-weight: 600;
+box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+transition: all 0.3s ease;
+}
+
+.team-member:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.close-modal {
+background: linear-gradient(135deg, #ff7043, #ff9a56);
+color: white;
+border: none;
+padding: 0.8rem 2rem;
+border-radius: 25px;
+font-weight: 600;
+cursor: pointer;
+margin-top: 1.5rem;
+transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 112, 67, 0.4);
+}
+
+.feature-button {
+background: linear-gradient(135deg, #ffb380, #ff8fb3);
+color: white;
+border: none;
+padding: 0.8rem 1.5rem;
+border-radius: 25px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 1rem;
+font-size: 0.9rem;
+box-shadow: 0 4px 15px rgba(255, 143, 179, 0.3);
+}
+
+.feature-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(255, 143, 179, 0.4);
+background: linear-gradient(135deg, #ff8fb3, #ffb380);
+}
+
+.interactive-section {
+margin: 4rem 0;
+text-align: center;
+}
+
+.action-buttons {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+margin: 2rem 0;
+}
+
+.action-btn {
+padding: 1.2rem 2rem;
+border: none;
+border-radius: 15px;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+color: white;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn.primary {
+background: linear-gradient(135deg, #ff9a56, #ff6b9d);
+}
+
+.action-btn.secondary {
+background: linear-gradient(135deg, #ff8a80, #ffa726);
+}
+
+.action-btn.tertiary {
+background: linear-gradient(135deg, #ff7043, #ff9a56);
+}
+
+.action-btn.quaternary {
+background: linear-gradient(135deg, #ff6b9d, #ff8a80);
+}
+
+.content-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+backdrop-filter: blur(10px);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 2000;
+padding: 2rem;
+}
+
+.content-modal.show {
+display: flex;
+}
+
+.content-modal-content {
+background: rgba(255, 255, 255, 0.95);
+backdrop-filter: blur(20px);
+padding: 3rem;
+border-radius: 25px;
+max-width: 600px;
+width: 100%;
+max-height: 80%;
+overflow-y: auto;
+text-align: left;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+border: 2px solid rgba(255, 107, 157, 0.3);
+}
+
+.content-modal h3 {
+color: #333;
+font-size: 2rem;
+margin-bottom: 1.5rem;
+background: linear-gradient(135deg, #ff9a56, #ff6b9d);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-align: center;
+}
+
+.content-modal p {
+color: #555;
+line-height: 1.6;
+margin-bottom: 1rem;
+}
+
+.content-modal ul {
+color: #555;
+margin: 1rem 0;
+padding-left: 1.5rem;
+}
+
+.content-modal li {
+margin-bottom: 0.5rem;
+}
+
+.close-content-modal {
+background: linear-gradient(135deg, #ff7043, #ff9a56);
+color: white;
+border: none;
+padding: 0.8rem 2rem;
+border-radius: 25px;
+font-weight: 600;
+cursor: pointer;
+margin-top: 1.5rem;
+transition: all 0.3s ease;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.close-content-modal:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 112, 67, 0.4);
+}
+</style>
+<style>@view-transition { navigation: auto; }</style>
+<script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+<script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+</head>
+<body>
+<div class="watercolor-bg"></div>
+<header>
+<nav>
+<div class="nav-left"><button class="team-button" onclick="showTeamModal()">👥 Integrantes</button> <a href="#" class="logo" id="site-title">Aquarela</a>
+</div>
+<ul class="nav-links">
+<li><a href="#inicio" onclick="scrollToSection('inicio')">Início</a></li>
+<li><a href="#livros" onclick="showRecommendedBooks()">Livros Recomendados</a></li>
+<li><a href="#criar-livro" onclick="showCreateBook()">Crie o Seu Livro</a></li>
+<li><a href="#criar-capa" onclick="showCreateCover()">Crie a Sua Capa</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<section class="hero" id="inicio">
+<h1 id="hero-title">Onde cada livro ganha novas cores</h1>
+<p id="hero-subtitle">Transformando a leitura em arte</p><button class="cta-button" id="cta-button" onclick="showNotification('Bem-vindo à nossa jornada literária! 📚✨')"> Explore Nossa Coleção </button>
+</section>
+<section class="features">
+<div class="feature-card"><span class="feature-icon">✍️</span>
+<div class="animated-emojis"><span class="emoji" style="--delay: 0s">📝</span> <span class="emoji" style="--delay: 0.2s">📚</span> <span class="emoji" style="--delay: 0.4s">✨</span> <span class="emoji" style="--delay: 0.6s">🎯</span>
+</div>
+<h3>Apoio a Autores Independentes</h3>
+<p>Auxiliamos no lançamento de obras de autores independentes, oferecendo suporte completo desde a criação até a divulgação.</p><button class="feature-button" onclick="showAuthorSupport()">Ver Serviços</button>
+</div>
+<div class="feature-card"><span class="feature-icon">🎨</span>
+<div class="animated-emojis"><span class="emoji" style="--delay: 0s">🖌️</span> <span class="emoji" style="--delay: 0.2s">🎭</span> <span class="emoji" style="--delay: 0.4s">🌈</span> <span class="emoji" style="--delay: 0.6s">✨</span>
+</div>
+<h3>Arte Visual &amp; Capas</h3>
+<p>Fornecemos todo equipamento artístico necessário para criação de materiais de divulgação e artes de capa personalizadas.</p><button class="feature-button" onclick="showArtServices()">Explorar Arte</button>
+</div>
+<div class="feature-card"><span class="feature-icon">📱</span>
+<div class="animated-emojis"><span class="emoji" style="--delay: 0s">💻</span> <span class="emoji" style="--delay: 0.2s">📖</span> <span class="emoji" style="--delay: 0.4s">🔄</span> <span class="emoji" style="--delay: 0.6s">💫</span>
+</div>
+<h3>Digital + Analógico</h3>
+<p>Unimos o poder de divulgação digital com a relaxante experiência física da leitura, preservando ambas as artes.</p><button class="feature-button" onclick="showDigitalServices()">Saiba Mais</button>
+</div>
+</section>
+<section class="interactive-section">
+<div class="action-buttons"><button class="action-btn primary" onclick="scrollToSection('inicio')"> 🏠 Início </button> <button class="action-btn secondary" onclick="showRecommendedBooks()"> 📚 Livros Recomendados </button> <button class="action-btn tertiary" onclick="showCreateBook()"> ✍️ Crie o Seu Livro </button> <button class="action-btn quaternary" onclick="showCreateCover()"> 🎨 Crie a Sua Capa </button>
+</div>
+</section>
+<section class="about-section" id="sobre">
+<h2 id="about-title">Nossa História</h2>
+<p>Na livraria aquarela temos o objetivo de transformar a experiência da leitura em algo além, juntando a arte escrita com a arte visual, buscamos autores independentes e auxiliamos o lançamento de suas obras com o beneficio da arte visual de nossos leitores, fornecemos todo equipamento artístico necessário, tornando possível a criação de materias de divulgação e artes de capa.</p>
+<p>Valorizamos a leitura e ajudamos a conservar tal arte, usando da mídia digital sem abandonar a leitura analógica, unindo o poder de divulgação digital com a relaxante experiência física.</p>
+<div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 1px solid rgba(255, 255, 255, 0.3);">
+<h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 1.5rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); text-align: center;">🎯 Missão</h3>
+<p style="color: rgba(255, 255, 255, 0.95); line-height: 1.7; margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">Transformar a leitura em uma experiência sensorial e criativa, unindo a arte escrita à arte visual. Promover e apoiar autores independentes, oferecendo recursos e suporte artístico para o lançamento e divulgação de suas obras, valorizando tanto o universo digital quanto o prazer da leitura física.</p>
+<div style="text-align: center; margin: 2rem 0;">
+<div style="width: 60px; height: 2px; background: linear-gradient(90deg, #ff9a56, #ff6b9d); margin: 0 auto; border-radius: 1px;"></div>
+</div>
+<h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 1.5rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); text-align: center;">🌟 Visão</h3>
+<p style="color: rgba(255, 255, 255, 0.95); line-height: 1.7; margin-bottom: 2rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">Ser referência nacional na integração entre literatura e arte visual, impulsionando novos talentos e inspirando leitores a vivenciar a leitura como uma forma completa de expressão artística e cultural.</p>
+<div style="text-align: center; margin: 2rem 0;">
+<div style="width: 60px; height: 2px; background: linear-gradient(90deg, #ff9a56, #ff6b9d); margin: 0 auto; border-radius: 1px;"></div>
+</div>
+<h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 1.5rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); text-align: center;">💎 Valores</h3>
+<ul style="color: rgba(255, 255, 255, 0.95); line-height: 1.8; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); list-style: none; padding: 0;">
+<li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #ff9a56; font-weight: bold;">•</span> <strong>Criatividade:</strong> incentivar a expressão artística em todas as formas, da escrita à ilustração.</li>
+<li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #ff6b9d; font-weight: bold;">•</span> <strong>Inovação:</strong> unir o tradicional e o digital, mantendo a leitura viva em todas as mídias.</li>
+<li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #ff8a80; font-weight: bold;">•</span> <strong>Valorização do autor independente:</strong> dar voz e visibilidade a novos talentos literários.</li>
+</ul>
+</div>
+<div class="interactive-books">
+<div class="book" onclick="openBook(1)" title="Clique para descobrir"></div>
+<div class="book" onclick="openBook(2)" title="Clique para descobrir"></div>
+<div class="book" onclick="openBook(3)" title="Clique para descobrir"></div>
+<div class="book" onclick="openBook(4)" title="Clique para descobrir"></div>
+<div class="book" onclick="openBook(5)" title="Clique para descobrir"></div>
+</div>
+</section>
+</main>
+<footer>
+<p>©️ 2025 Livraria Aquarela. Onde a literatura encontra a arte. 🎨📚</p>
+</footer>
+<div class="notification" id="notification"></div>
+<div class="team-modal" id="teamModal">
+<div class="team-modal-content">
+<h3>👥 Integrantes do Grupo</h3>
+<div class="team-member">
+Leticia Vieira Cordeiro
+</div>
+<div class="team-member">
+Thauan de Souza Bezerra
+</div>
+<div class="team-member">
+Kaio Edyvan dos Santos
+</div>
+<div class="team-member">
+Gabriella Santos Manfredo
+</div><button class="close-modal" onclick="closeTeamModal()">Fechar</button>
+</div>
+</div>
+<div class="content-modal" id="contentModal">
+<div class="content-modal-content">
+<h3 id="modalTitle">Título</h3>
+<div id="modalContent">
+<p>Conteúdo será carregado aqui...</p>
+</div><button class="close-content-modal" onclick="closeContentModal()">Fechar</button>
+</div>
+</div>
+<script>
+// Configuração do SDK
+const defaultConfig = {
+site_title: "Aquarela",
+hero_title: "Onde cada livro ganha novas cores",
+hero_subtitle: "Transformando a leitura em arte",
+about_title: "Nossa História",
+cta_button: "Explore Nossa Coleção"
+};
+
+// Função para mostrar notificações
+function showNotification(message) {
+const notification = document.getElementById('notification');
+notification.textContent = message;
+notification.classList.add('show');
+
+setTimeout(() => {
+notification.classList.remove('show');
+}, 3000);
+}
+
+// Funções do modal dos integrantes
+function showTeamModal() {
+const modal = document.getElementById('teamModal');
+modal.classList.add('show');
+showNotification('Conheça nossa equipe! 👥✨');
+}
+
+function closeTeamModal() {
+const modal = document.getElementById('teamModal');
+modal.classList.remove('show');
+}
+
+// Fechar modal clicando fora
+document.getElementById('teamModal').addEventListener('click', function(e) {
+if (e.target === this) {
+closeTeamModal();
+}
+});
+
+// Animação dos cards
+function animateCard(card) {
+card.style.transform = 'scale(1.05) rotateY(5deg)';
+card.style.background = 'rgba(255, 255, 255, 0.4)';
+
+setTimeout(() => {
+card.style.transform = 'translateY(-15px) scale(1.02)';
+card.style.background = 'rgba(255, 255, 255, 0.35)';
+}, 200);
+
+setTimeout(() => {
+card.style.transform = '';
+card.style.background = '';
+}, 1000);
+
+showNotification('Descobrindo mais sobre nossa paixão pela literatura! 📖');
+}
+
+// Mudança de tema
+function changeTheme(color) {
+const colors = {
+red: '#e74c3c',
+blue: '#3498db',
+green: '#2ecc71',
+yellow: '#f39c12',
+purple: '#9b59b6'
+};
+
+document.documentElement.style.setProperty('--accent-color', colors[color]);
+showNotification(`Tema alterado para ${color}! 🎨`);
+}
+
+// Interação com livros
+function openBook(bookNumber) {
+const messages = [
+'Autor independente em destaque! ✍️',
+'Arte de capa criada por nossos leitores! 🎨',
+'Experiência digital + física! 📱📖',
+'Equipamentos artísticos disponíveis! 🖌️',
+'Divulgação completa garantida! 📢'
+];
+
+showNotification(messages[bookNumber - 1]);
+}
+
+// Efeito de paralaxe suave
+window.addEventListener('scroll', () => {
+const scrolled = window.pageYOffset;
+const parallax = document.querySelector('.watercolor-bg');
+const speed = scrolled * 0.5;
+parallax.style.transform = `translateY(${speed}px)`;
+});
+
+// Inicialização do SDK
+async function onConfigChange(config) {
+document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+document.getElementById('about-title').textContent = config.about_title || defaultConfig.about_title;
+document.getElementById('cta-button').textContent = config.cta_button || defaultConfig.cta_button;
+}
+
+function mapToCapabilities(config) {
+return {
+recolorables: [],
+borderables: [],
+fontEditable: undefined,
+fontSizeable: undefined
+};
+}
+
+function mapToEditPanelValues(config) {
+return new Map([
+["site_title", config.site_title || defaultConfig.site_title],
+["hero_title", config.hero_title || defaultConfig.hero_title],
+["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+["about_title", config.about_title || defaultConfig.about_title],
+["cta_button", config.cta_button || defaultConfig.cta_button]
+]);
+}
+
+// Inicializar SDK quando disponível
+if (window.elementSdk) {
+window.elementSdk.init({
+defaultConfig,
+onConfigChange,
+mapToCapabilities,
+mapToEditPanelValues
+});
+}
+
+// Funções para os botões de conteúdo
+function showContentModal(title, content) {
+const modal = document.getElementById('contentModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalContent = document.getElementById('modalContent');
+
+modalTitle.textContent = title;
+modalContent.innerHTML = content;
+modal.classList.add('show');
+}
+
+function closeContentModal() {
+const modal = document.getElementById('contentModal');
+modal.classList.remove('show');
+}
+
+// Fechar modal clicando fora
+document.getElementById('contentModal').addEventListener('click', function(e) {
+if (e.target === this) {
+closeContentModal();
+}
+});
+
+// Funções dos botões dos cards
+function showAuthorSupport() {
+const content = `
+<p><strong>🎯 Nossos Serviços para Autores:</strong></p>
+<ul>
+<li><strong>Consultoria Editorial:</strong> Orientação completa desde a ideia inicial até a publicação</li>
+<li><strong>Revisão e Edição:</strong> Equipe especializada em diferentes gêneros literários</li>
+<li><strong>Design de Capa:</strong> Criação artística personalizada com nossos equipamentos</li>
+<li><strong>Formatação:</strong> Preparação para impressão e formato digital</li>
+<li><strong>Marketing Literário:</strong> Estratégias de divulgação e lançamento</li>
+<li><strong>Distribuição:</strong> Canais físicos e digitais</li>
+</ul>
+<p><strong>💡 Diferenciais:</strong></p>
+<p>Oferecemos todo equipamento artístico necessário para que você e nossa equipe criem materiais únicos e impactantes. Desde tablets gráficos até estúdio de fotografia para book trailers!</p>
+`;
+showContentModal('✍️ Apoio a Autores Independentes', content);
+showNotification('Descubra como podemos ajudar você a publicar! ✨');
+}
+
+function showArtServices() {
+const content = `
+<p><strong>🎨 Equipamentos Disponíveis:</strong></p>
+<ul>
+<li><strong>Tablets Gráficos Profissionais:</strong> Wacom Cintiq e iPad Pro com Apple Pencil</li>
+<li><strong>Software Especializado:</strong> Adobe Creative Suite, Procreate, Clip Studio Paint</li>
+<li><strong>Estúdio de Fotografia:</strong> Para book trailers e material promocional</li>
+<li><strong>Impressoras de Alta Qualidade:</strong> Para protótipos e materiais gráficos</li>
+<li><strong>Mesa Digitalizadora:</strong> Para digitalização de arte tradicional</li>
+</ul>
+<p><strong>🖌️ Serviços Artísticos:</strong></p>
+<ul>
+<li>Criação de capas personalizadas</li>
+<li>Ilustrações internas para livros</li>
+<li>Material promocional (banners, cartazes, marcadores)</li>
+<li>Identidade visual para autores</li>
+<li>Book trailers e conteúdo para redes sociais</li>
+</ul>
+`;
+showContentModal('🎨 Arte Visual & Equipamentos', content);
+showNotification('Explore nosso estúdio criativo! 🖌️');
+}
+
+function showDigitalServices() {
+const content = `
+<p><strong>📱 Estratégia Digital:</strong></p>
+<ul>
+<li><strong>Redes Sociais:</strong> Gestão de Instagram, TikTok e Facebook literários</li>
+<li><strong>E-books:</strong> Formatação e distribuição em plataformas digitais</li>
+<li><strong>Audiobooks:</strong> Produção com estúdio próprio</li>
+<li><strong>Website do Autor:</strong> Criação de presença digital profissional</li>
+<li><strong>Newsletter:</strong> Comunicação direta com leitores</li>
+</ul>
+<p><strong>📖 Experiência Analógica:</strong></p>
+<ul>
+<li><strong>Livros Físicos:</strong> Impressão de qualidade premium</li>
+<li><strong>Eventos Presenciais:</strong> Lançamentos e sessões de autógrafos</li>
+<li><strong>Clube do Livro:</strong> Encontros mensais para discussão</li>
+<li><strong>Oficinas de Escrita:</strong> Workshops presenciais</li>
+</ul>
+<p><em>Acreditamos que digital e analógico se complementam para criar experiências literárias completas!</em></p>
+`;
+showContentModal('📱 Digital + Analógico', content);
+showNotification('O melhor dos dois mundos! 📚✨');
+}
+
+// Função para rolar até seção
+function scrollToSection(sectionId) {
+const section = document.getElementById(sectionId);
+if (section) {
+section.scrollIntoView({ behavior: 'smooth' });
+showNotification('Navegando para ' + sectionId + '! 🧭');
+}
+}
+
+// Funções dos novos botões principais
+function showRecommendedBooks() {
+const content = `
+<p><strong>📚 Livros Recomendados da Aquarela</strong></p>
+<p><em>Nossa seleção especial de obras que unem literatura e arte visual!</em></p>
+
+<p><strong>🌟 Top 6 Mais Vendidos:</strong></p>
+<ul>
+<li><strong>"Cidades de Papel"</strong> - John Green<br>
+<em>É um romance de John Green que acompanha Quentin, um adolescente aparentemente comum, em sua busca por Margo Roth Spiegelman, a vizinha misteriosa por quem ele é apaixonado desde a infância.</em><br>
+⭐⭐⭐⭐⭐ (4.9/5) | R$ 42,90</li>
+
+<li><strong>"A Garota do Lago"</strong> - Charlie Donlea<br>
+<em>É um suspense que narra o assassinato da estudante Becca Eckersley e a investigação subsequente pela jornalista Kelsey Castle. A história é contada em uma narrativa não linear, alternando entre o presente, com Kelsey investigando o caso em Summit Lake, e o passado, revelando a vida de Becca e seus amigos antes de sua morte. O enredo explora os segredos da cidade e da vítima, com Kelsey se sentindo cada vez mais conectada à história por ter passado por um trauma semelhante.</em><br>
+⭐⭐⭐⭐⭐ (4.7/5) | R$ 39,90</li>
+
+<li><strong>"Apostando no Amor"</strong> - Lynn Painter<br>
+<em>É um romance de Lynn Painter sobre Bailey e Charlie, dois adolescentes com personalidades opostas que se conhecem por acaso após o divórcio dos pais de Bailey. Após vários encontros marcados por provocações, eles se tornam colegas de trabalho e, para provar que homens e mulheres podem ser apenas amigos (o que Charlie duvida), fazem uma aposta. A situação se complica quando eles fingem estar namorando para irritar o namorado da mãe de Bailey, e acabam se apaixonando de verdade.</em><br>
+⭐⭐⭐⭐⭐ (4.8/5) | R$ 44,50</li>
+
+<li><strong>"O Homem de Giz"</strong> - C.J. Tudor<br>
+<em>É um thriller de C.J. Tudor sobre um grupo de amigos cuja infância em 1986 é marcada pela descoberta de um corpo desmembrado após seguirem um código secreto de desenhos a giz. Trinta anos depois, em 2016, eles recebem um desenho de um homem de giz enforcado, um aviso que os força a confrontar o segredo de 1986 quando um dos amigos aparece morto. A história alterna entre o passado e o presente, revelando reviravoltas e o mistério por trás do que aconteceu na pequena cidade inglesa.</em><br>
+⭐⭐⭐⭐⭐ (4.9/5) | R$ 46,90</li>
+
+<li><strong>"Morando com um Vampiro"</strong> - Romance Paranormal<br>
+<em>É uma comédia romântica paranormal sobre Cassie, uma artista excêntrica que não consegue pagar as contas e aceita morar em um apartamento barato. Ela descobre que seu colega de quarto, Frederick, é um vampiro do século XVIII, e apesar dos hábitos incomuns dele, os dois começam a se apaixonar enquanto ela o ajuda a se adaptar ao mundo moderno.</em><br>
+⭐⭐⭐⭐⭐ (4.8/5) | R$ 41,90</li>
+
+<li><strong>"Cutelo e Corvo"</strong> - Thriller Dark Romance (+18)<br>
+<em>Sobre dois assassinos de aluguel rivais, Sloane e Rowan, que se encontram e desenvolvem uma amizade improvável enquanto caçam e matam outros serial killers. A história é uma comédia romântica "dark" para maiores de 18 anos que combina romance, ação e humor ácido.</em><br>
+⭐⭐⭐⭐⭐ (4.7/5) | R$ 49,90</li>
+</ul>
+
+<p><strong>🎨 Categorias Especiais:</strong></p>
+<ul>
+<li><strong>Livros com Realidade Aumentada:</strong> Escaneie e veja as ilustrações ganharem vida!</li>
+<li><strong>Edições Limitadas:</strong> Apenas 100 cópias com arte original assinada</li>
+<li><strong>Livros Sensoriais:</strong> Texturas e aromas que complementam a leitura</li>
+<li><strong>Graphic Novels Autorais:</strong> Histórias visuais de artistas independentes</li>
+</ul>
+
+<p><strong>💝 Promoção do Mês:</strong></p>
+<p><em>Compre 2 livros recomendados e ganhe 20% de desconto + marcador artístico exclusivo!</em></p>
+`;
+showContentModal('📚 Livros Recomendados', content);
+showNotification('Descubra nossas obras mais amadas! 📖✨');
+}
+
+function showCreateBook() {
+const content = `
+<p><strong>✍️ Crie o Seu Livro na Aquarela</strong></p>
+<p><em>Transforme sua história em uma obra de arte literária completa!</em></p>
+
+<div style="background: rgba(255, 107, 157, 0.1); padding: 2rem; border-radius: 15px; margin: 1.5rem 0; border: 2px solid rgba(255, 107, 157, 0.3);">
+<h4 style="color: #333; margin-bottom: 1.5rem; text-align: center;">📝 Envie seu Projeto</h4>
+
+<div style="margin-bottom: 1.5rem;">
+<label for="bookTitle" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📚 Nome do Livro:</label>
+<input type="text" id="bookTitle" placeholder="Digite o título do seu livro..." style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+</div>
+
+<div style="margin-bottom: 1.5rem;">
+<label for="authorName" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">✍️ Nome do Autor:</label>
+<input type="text" id="authorName" placeholder="Seu nome completo..." style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+</div>
+
+<div style="margin-bottom: 1.5rem;">
+<label for="bookGenre" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">🎭 Gênero:</label>
+<select id="bookGenre" style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+<option value="">Selecione o gênero...</option>
+<option value="romance">Romance</option>
+<option value="ficcao">Ficção</option>
+<option value="fantasia">Fantasia</option>
+<option value="misterio">Mistério/Suspense</option>
+<option value="biografia">Biografia</option>
+<option value="poesia">Poesia</option>
+<option value="infantil">Infantil</option>
+<option value="autoajuda">Autoajuda</option>
+<option value="outro">Outro</option>
+</select>
+</div>
+
+<div style="margin-bottom: 1.5rem;">
+<label for="bookFile" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📄 Arquivo do Livro (PDF, DOC, DOCX):</label>
+<div style="position: relative;">
+<input type="file" id="bookFile" accept=".pdf,.doc,.docx,.txt" style="width: 100%; padding: 0.8rem; border: 2px dashed rgba(255, 107, 157, 0.5); border-radius: 10px; font-size: 1rem; box-sizing: border-box; background: rgba(255, 255, 255, 0.8);">
+<div id="fileInfo" style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"></div>
+</div>
+</div>
+
+<div style="margin-bottom: 1.5rem;">
+<label for="bookDescription" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📖 Sinopse/Descrição:</label>
+<textarea id="bookDescription" placeholder="Conte-nos sobre sua história..." rows="4" style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; resize: vertical; box-sizing: border-box;"></textarea>
+</div>
+
+<button onclick="submitBookProject()" style="width: 100%; background: linear-gradient(135deg, #ff9a56, #ff6b9d); color: white; border: none; padding: 1rem 2rem; border-radius: 15px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 157, 0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(255, 107, 157, 0.3)'">
+🚀 Enviar Projeto
+</button>
+</div>
+
+<p><strong>📝 Processo Completo de Criação:</strong></p>
+
+<p><strong>1️⃣ Desenvolvimento da História:</strong></p>
+<ul>
+<li>Consultoria editorial personalizada</li>
+<li>Desenvolvimento de personagens e enredo</li>
+<li>Estruturação narrativa profissional</li>
+<li>Revisão e edição completa</li>
+</ul>
+
+<p><strong>2️⃣ Criação Visual:</strong></p>
+<ul>
+<li>Design de capa artística exclusiva</li>
+<li>Ilustrações internas personalizadas</li>
+<li>Formatação profissional</li>
+<li>Escolha de papel e acabamento premium</li>
+</ul>
+
+<p><strong>3️⃣ Produção e Publicação:</strong></p>
+<ul>
+<li>Impressão de alta qualidade</li>
+<li>ISBN e registro legal</li>
+<li>Distribuição física e digital</li>
+<li>Marketing e lançamento</li>
+</ul>
+
+<p><strong>💰 Pacotes Disponíveis:</strong></p>
+<ul>
+<li><strong>Básico:</strong> R$ 2.500 - Até 100 páginas, capa simples</li>
+<li><strong>Completo:</strong> R$ 4.500 - Até 200 páginas, capa + ilustrações</li>
+<li><strong>Premium:</strong> R$ 7.500 - Ilimitado, arte exclusiva, marketing</li>
+</ul>
+
+<p><strong>⏱️ Prazo:</strong> 3 a 6 meses (dependendo do pacote)</p>
+
+<p><strong>📞 Agende sua Consulta Gratuita:</strong></p>
+<p>WhatsApp: (11) 99999-7777<br>
+E-mail: crieseullivro@aquarela.com.br</p>
+`;
+showContentModal('✍️ Crie o Seu Livro', content);
+showNotification('Sua história merece ser contada! 📚🎨');
+}
+
+function showCreateCover() {
+const content = `
+<p><strong>🎨 Crie a Sua Capa na Aquarela</strong></p>
+<p><em>Transforme seu livro em uma obra de arte visual impactante!</em></p>
+
+<div style="background: rgba(255, 107, 157, 0.1); padding: 2rem; border-radius: 15px; margin: 1.5rem 0; border: 2px solid rgba(255, 107, 157, 0.3);">
+<h4 style="color: #333; margin-bottom: 1.5rem; text-align: center;">🎨 Simulador Interativo de Capa</h4>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+<!-- Controles -->
+<div>
+<div style="margin-bottom: 1rem;">
+<label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📚 Título do Livro:</label>
+<input type="text" id="coverTitle" placeholder="Digite o título..." value="Meu Livro Incrível" oninput="updateCoverPreview()" style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+</div>
+
+<div style="margin-bottom: 1rem;">
+<label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">✍️ Autor:</label>
+<input type="text" id="coverAuthor" placeholder="Nome do autor..." value="Seu Nome" oninput="updateCoverPreview()" style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+</div>
+
+<div style="margin-bottom: 1rem;">
+<label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">🎨 Estilo da Capa:</label>
+<select id="coverStyle" onchange="updateCoverPreview()" style="width: 100%; padding: 0.8rem; border: 2px solid rgba(255, 107, 157, 0.3); border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+<option value="aquarela">Aquarela Artística</option>
+<option value="minimalista">Minimalista Moderno</option>
+<option value="vintage">Vintage Clássico</option>
+<option value="fantasia">Fantasia Épica</option>
+<option value="romance">Romance Delicado</option>
+</select>
+</div>
+
+<div style="margin-bottom: 1rem;">
+<label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">🌈 Cor Principal:</label>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+<button onclick="changeCoverColor('#ff9a56')" style="background: #ff9a56; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+<button onclick="changeCoverColor('#ff6b9d')" style="background: #ff6b9d; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+<button onclick="changeCoverColor('#ff8a80')" style="background: #ff8a80; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+<button onclick="changeCoverColor('#ffa726')" style="background: #ffa726; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+<button onclick="changeCoverColor('#ff7043')" style="background: #ff7043; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+<button onclick="changeCoverColor('#9c27b0')" style="background: #9c27b0; border: none; height: 40px; border-radius: 8px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></button>
+</div>
+</div>
+
+<div style="margin-bottom: 1rem;">
+<label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📐 Formato:</label>
+<div style="display: flex; gap: 0.5rem;">
+<button onclick="changeCoverFormat('portrait')" id="formatPortrait" style="flex: 1; padding: 0.5rem; border: 2px solid rgba(255, 107, 157, 0.5); background: rgba(255, 107, 157, 0.2); border-radius: 8px; cursor: pointer; font-weight: 600;">📖 Retrato</button>
+<button onclick="changeCoverFormat('square')" id="formatSquare" style="flex: 1; padding: 0.5rem; border: 2px solid rgba(255, 107, 157, 0.3); background: white; border-radius: 8px; cursor: pointer;">⬜ Quadrado</button>
+</div>
+</div>
+
+<button onclick="randomizeCover()" style="width: 100%; background: linear-gradient(135deg, #ff7043, #ff9a56); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; margin-bottom: 1rem; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+🎲 Gerar Capa Aleatória
+</button>
+</div>
+
+<!-- Preview da Capa -->
+<div style="text-align: center;">
+<div id="coverPreview" style="width: 200px; height: 280px; margin: 0 auto; position: relative; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); background: linear-gradient(135deg, #ff9a56, #ff6b9d); display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; color: white; text-align: center; transition: all 0.5s ease; cursor: pointer;" onclick="animateCover()">
+<div>
+<div id="previewTitle" style="font-size: 1.2rem; font-weight: bold; line-height: 1.2; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Meu Livro Incrível</div>
+<div id="previewDecoration" style="font-size: 2rem; margin: 1rem 0;">🎨</div>
+</div>
+<div id="previewAuthor" style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Seu Nome</div>
+</div>
+<p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">👆 Clique na capa para animação!</p>
+</div>
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+<button onclick="downloadCoverPreview()" style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 1rem 2rem; border-radius: 15px; font-weight: 600; cursor: pointer; margin-right: 1rem; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+💾 Baixar Preview
+</button>
+<button onclick="requestProfessionalCover()" style="background: linear-gradient(135deg, #ff9a56, #ff6b9d); color: white; border: none; padding: 1rem 2rem; border-radius: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+🎨 Solicitar Capa Profissional
+</button>
+</div>
+</div>
+
+<p><strong>🖌️ Serviços de Capa Disponíveis:</strong></p>
+
+<p><strong>1️⃣ Capa Artística Tradicional:</strong></p>
+<ul>
+<li>Aquarela pintada à mão</li>
+<li>Técnicas mistas (tinta, lápis, colagem)</li>
+<li>Arte original escaneada em alta resolução</li>
+<li>Certificado de autenticidade</li>
+</ul>
+
+<p><strong>2️⃣ Capa Digital Profissional:</strong></p>
+<ul>
+<li>Ilustração digital personalizada</li>
+<li>Fotomanipulação artística</li>
+<li>Tipografia exclusiva</li>
+<li>Efeitos especiais e texturas</li>
+</ul>
+
+<p><strong>3️⃣ Capa Interativa:</strong></p>
+<ul>
+<li>Elementos com realidade aumentada</li>
+<li>QR codes para conteúdo extra</li>
+<li>Tintas especiais (termocromática, UV)</li>
+<li>Texturas táteis e relevos</li>
+</ul>
+
+<p><strong>💰 Investimento:</strong></p>
+<ul>
+<li><strong>Capa Simples:</strong> R$ 350 - Design digital básico</li>
+<li><strong>Capa Artística:</strong> R$ 650 - Ilustração personalizada</li>
+<li><strong>Capa Premium:</strong> R$ 950 - Arte original + efeitos especiais</li>
+<li><strong>Capa Interativa:</strong> R$ 1.200 - Tecnologia + arte exclusiva</li>
+</ul>
+
+<p><strong>⏱️ Prazo:</strong> 7 a 15 dias úteis</p>
+
+<p><strong>🎁 Bônus:</strong> Versões para redes sociais e marketing incluídas!</p>
+
+<p><strong>📞 Solicite seu Orçamento:</strong></p>
+<p>WhatsApp: (11) 99999-6666<br>
+E-mail: capas@aquarela.com.br</p>
+`;
+showContentModal('🎨 Crie a Sua Capa', content);
+showNotification('Sua capa será uma obra de arte! 🖼️✨');
+
+// Inicializar o preview
+setTimeout(() => {
+updateCoverPreview();
+}, 100);
+}
+
+// Função para enviar projeto do livro
+function submitBookProject() {
+const title = document.getElementById('bookTitle').value;
+const author = document.getElementById('authorName').value;
+const genre = document.getElementById('bookGenre').value;
+const file = document.getElementById('bookFile').files[0];
+const description = document.getElementById('bookDescription').value;
+
+// Validação básica
+if (!title.trim()) {
+showNotification('❌ Por favor, digite o nome do livro!');
+return;
+}
+
+if (!author.trim()) {
+showNotification('❌ Por favor, digite o nome do autor!');
+return;
+}
+
+if (!genre) {
+showNotification('❌ Por favor, selecione o gênero!');
+return;
+}
+
+if (!description.trim()) {
+showNotification('❌ Por favor, adicione uma descrição!');
+return;
+}
+
+// Simular envio
+const button = event.target;
+const originalText = button.textContent;
+
+button.textContent = '📤 Enviando...';
+button.disabled = true;
+button.style.opacity = '0.7';
+
+setTimeout(() => {
+button.textContent = '✅ Enviado com Sucesso!';
+button.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+
+showNotification(`🎉 Projeto "${title}" enviado com sucesso! Nossa equipe entrará em contato em até 24h.`);
+
+// Limpar formulário
+setTimeout(() => {
+document.getElementById('bookTitle').value = '';
+document.getElementById('authorName').value = '';
+document.getElementById('bookGenre').value = '';
+document.getElementById('bookFile').value = '';
+document.g
